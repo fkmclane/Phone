@@ -3,11 +3,19 @@
 #include "mt8880.h"
 
 void mt8880_init() {
-  //Prepare chip select and register select
+  //Prepare interrupt input with pull-up
+  pinMode(IRQ, INPUT);
+  digitalWrite(IRQ, HIGH);
+
+  //Prepare chip select, register select, read/write, and clock
   pinMode(CS, OUTPUT);
   digitalWrite(CS, HIGH);
   pinMode(RS, OUTPUT);
   digitalWrite(RS, HIGH);
+  pinMode(RW, OUTPUT);
+  digitalWrite(RW, HIGH);
+  pinMode(O2, OUTPUT);
+  digitalWrite(O2, LOW);
 
   //Wait until 100ms after power on
   while(millis() < 100);
